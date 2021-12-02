@@ -1,0 +1,13 @@
+[Unit]
+Description=pocketbridge
+After=network.target
+
+[Service]
+User=pocketbridge
+Group=pocketbridge
+WorkingDirectory=/home/pocketbridge
+Environment="POCKETBRIDGE_SETTINGS=/home/pocketbridge/settings.py"
+ExecStart=/home/pocketbridge/venv/bin/gunicorn -w 1 -b 127.0.0.1:6000 "pocketbridge:create_app()" -n pocketbridge
+
+[Install]
+WantedBy=multi-user.target
