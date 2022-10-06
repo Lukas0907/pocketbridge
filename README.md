@@ -12,6 +12,12 @@ var f = document.createElement("form");
 f.action = url;
 f.method = "post";
 
+// Convert all images to JPEG via the pocket proxy
+for (let img of document.querySelectorAll("img")) {
+    img.src = "https://pocket-image-cache.com//filters:format(jpg)/" + img.src;
+    img.removeAttribute("srcset");
+}
+
 var c  = document.createElement("textarea");
 c.name = "content";
 if (document.URL.match(/^about:reader/)) {
